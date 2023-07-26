@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import sess from '../functions/sessionHandler';
+import backend from '../functions/backend.js';
 
 
 function DonorDetails(props) {
@@ -20,7 +21,7 @@ function DonorDetails(props) {
         const fetchDonorData = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:8080/api/donor/search?id=${donorId}`
+                    `${backend.getBackendUrl()}/api/donor/search?id=${donorId}`
                 );
                 setDonor(response.data);
             } catch (err) {
@@ -72,7 +73,7 @@ function DonorDetails(props) {
                     </table>
                 </div>
             ) : (
-                <div>Loading...</div>
+                <div></div>
             )}
         </div>
     );

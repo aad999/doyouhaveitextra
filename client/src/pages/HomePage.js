@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import sess from "../functions/sessionHandler";
 import Navbar from "./Navbar";
+import backend from '../functions/backend.js';
 
 function HomePage() {
 

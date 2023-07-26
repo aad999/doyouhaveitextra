@@ -3,6 +3,7 @@ import axios from 'axios';
 import sess from '../functions/sessionHandler';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
+import backend from '../functions/backend.js';
 
 const DonorDashboard = () => {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ const DonorDashboard = () => {
         const fetchDonorData = async () => {
             try {
                 const donorId = sess.getDonor();
-                const response = await axios.get(`http://localhost:8080/api/donor/search?id=${donorId}`);
+                const response = await axios.get(`${backend.getBackendUrl()}/api/donor/search?id=${donorId}`);
                 setDonor(response.data);
                 const donationIds = response.data.donations;
                 fetchDonations(donationIds);
@@ -42,7 +43,7 @@ const DonorDashboard = () => {
     const fetchDonations = async (donationIds) => {
         try {
             const donationData = await Promise.all(donationIds.map(donationId => (
-                axios.get(`http://localhost:8080/api/donation/search?id=${donationId}`)
+                axios.get(`${backend.getBackendUrl()}/api/donation/search?id=${donationId}`)
             )));
             const donations = donationData.map(d => d.data);
             setDonations(donations);
@@ -58,7 +59,7 @@ const DonorDashboard = () => {
     const fetchNgoData = async (ngoIds) => {
         try {
             const ngoData = await Promise.all(ngoIds.map(ngoId => (
-                axios.get(`http://localhost:8080/api/ngo/search?id=${ngoId}`)
+                axios.get(`${backend.getBackendUrl()}/api/ngo/search?id=${ngoId}`)
             )));
             const ngos = ngoData.map(d => d.data);
             setSelectedNgoData(ngos);
@@ -93,7 +94,7 @@ const DonorDashboard = () => {
     const handleButtonClick = (donationId, ngoId) => {
         const isConfirmed = window.confirm('Are you sure to accept the request?');
         if (isConfirmed) {
-            const endpoint = 'http://localhost:8080/request/accept';
+            const endpoint = `${backend.getBackendUrl()}/request/accept`;
             const data = {
                 ngoId: ngoId,
                 donationId: donationId,
@@ -207,7 +208,7 @@ const DonorDashboard = () => {
                             ))}
                         </div>
                     ) : (
-                        <div className="text-center text-xl font-bold">Loading...</div>
+                        <div className="text-center text-xl font-bold"></div>
                     )}
                 </div>
             )}

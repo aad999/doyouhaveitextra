@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import sess from "../functions/sessionHandler";
 import { useNavigate, Link } from "react-router-dom";
+import backend from '../functions/backend.js';
 
 
 const DonorLogin = () => {
@@ -22,7 +23,7 @@ const DonorLogin = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8080/donor/login", {
+        await axios.post(`${backend.getBackendUrl()}/donor/login`, {
             emailId: emailId,
             password: password,
         })

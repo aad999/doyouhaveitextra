@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import sess from '../functions/sessionHandler';
+import backend from '../functions/backend.js';
 
 
 function NGODetails(props) {
@@ -19,7 +20,7 @@ function NGODetails(props) {
         const fetchNGOData = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:8080/api/ngo/search?id=${ngoId}`
+                    `${backend.getBackendUrl()}/api/ngo/search?id=${ngoId}`
                 );
                 setNGO(response.data);
             } catch (err) {
@@ -79,7 +80,7 @@ function NGODetails(props) {
                     </table>
                 </div>
             ) : (
-                <div>Loading...</div>
+                <div></div>
             )}
         </div>
     );

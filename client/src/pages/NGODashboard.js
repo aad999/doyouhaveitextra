@@ -3,6 +3,7 @@ import axios from "axios";
 import sess from "../functions/sessionHandler";
 import Navbar from "./Navbar";
 import { Link, useNavigate } from "react-router-dom";
+import backend from '../functions/backend.js';
 
 const NGODashboard = () => {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ const NGODashboard = () => {
     const fetchDonationsData = async () => {
         try {
             const response = await axios.get(
-                `http://localhost:8080/api/ngo/received/search?id=${sess.getNGO()}`
+                `${backend.getBackendUrl()}/api/ngo/received/search?id=${sess.getNGO()}`
             );
             const populatedData = await populateDonorData(response.data);
             setDonationsData(populatedData);
@@ -41,7 +42,7 @@ const NGODashboard = () => {
     const fetchNgoData = async () => {
         try {
             const response = await axios.get(
-                `http://localhost:8080/api/ngo/search?id=${sess.getNGO()}`
+                `${backend.getBackendUrl()}/api/ngo/search?id=${sess.getNGO()}`
             );
             setNgoData(response.data);
         } catch (error) {
@@ -55,7 +56,7 @@ const NGODashboard = () => {
         for (const donation of donations) {
             try {
                 const response = await axios.get(
-                    `http://localhost:8080/api/donor/search?id=${donation.donor}`
+                    `${backend.getBackendUrl()}/api/donor/search?id=${donation.donor}`
                 );
                 const donorData = response.data;
                 donation.donor = donorData;
@@ -153,7 +154,7 @@ const NGODashboard = () => {
                                 </div>
                             ))
                         ) : (
-                            <div>Loading...</div>
+                            <div></div>
                         )}
                     </div>
                 ) : (

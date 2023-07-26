@@ -3,6 +3,7 @@ import axios from "axios";
 import sess from "../functions/sessionHandler";
 import { useNavigate, Link } from "react-router-dom";
 import Navbar from "./Navbar";
+import backend from '../functions/backend.js';
 
 const DonationsList = () => {
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ const DonationsList = () => {
         try {
             const encodedQuery = encodeURIComponent(searchQuery);
             const response = await axios.get(
-                `http://localhost:8080/api/donations/search?query=${encodedQuery}`
+                `${backend.getBackendUrl()}/api/donations/search?query=${encodedQuery}`
             );
             setSearchResults(response.data);
         } catch (err) {
@@ -48,7 +49,7 @@ const DonationsList = () => {
     const fetchNgoData = async () => {
         try {
             const response = await axios.get(
-                `http://localhost:8080/api/ngo/search?id=${sess.getNGO()}`
+                `${backend.getBackendUrl()}/api/ngo/search?id=${sess.getNGO()}`
             );
             setNgoData(response.data);
         } catch (err) {
@@ -70,7 +71,7 @@ const DonationsList = () => {
     };
 
     const handleButtonClick = (donationId) => {
-        const endpoint = "http://localhost:8080/request/submit";
+        const endpoint = `${backend.getBackendUrl()}/request/submit`;
         const data = {
             ngoId: sess.getNGO(),
             donationId: donationId,
