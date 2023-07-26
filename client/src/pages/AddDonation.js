@@ -45,7 +45,7 @@ function AddDonation() {
                     date: currentDate, // Include current date in the request
                     donor_id: donor_id,
                 });
-                window.location.reload();
+                navigate('/donor/dashboard');
             } catch (err) {
                 if (err.response && err.response.data && err.response.data.message) {
                     alert(err.response.data.message);

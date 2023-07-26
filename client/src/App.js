@@ -7,7 +7,8 @@ import NGOSignup from './pages/NGOSignup';
 import NGOLogin from './pages/NGOLogin';
 import AddDonation from './pages/AddDonation';
 import DonationsList from './pages/DonationsList';
-import DonorDashboard from './pages/DonorDashboard';
+import DonorDashboard0 from './pages/DonorDashboard0';
+import DonorDashboard1 from './pages/DonorDashboard1';
 import JoinUs from './pages/JoinUs';
 import LogOut from './pages/LogOut';
 import NGODetails from './pages/NGODetails';
@@ -27,7 +28,9 @@ const App = () => {
         <Route path="/ngo/login" element={<NGOLogin />} />
         <Route path="/addDonation" element={<AddDonation />} />
         <Route path="/donationsList" element={<DonationsList />} />
-        <Route path="/donor/dashboard" element={<DonorDashboard />} />
+        <Route path="/donor/dashboard" element={<DonorDashboard0 />} />
+        <Route path="/donor/dashboard0" element={<DonorDashboard0 />} />
+        <Route path="/donor/dashboard1" element={<DonorDashboard1 />} />
         <Route path="/ngo/dashboard" element={<NGODashboard />} />
         <Route path="/joinUs" element={<JoinUs />} />
         <Route path="/logOut" element={<LogOut />} />

@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 
 
-const DonorDashboard = () => {
+const DonorDashboard0 = () => {
     const navigate = useNavigate();
 
     const [donor, setDonor] = useState(null);
@@ -101,7 +101,7 @@ const DonorDashboard = () => {
             };
             axios.post(endpoint, data)
                 .then((response) => {
-                    window.location.reload();
+                    navigate('/donor/dashboard1');
                     // Refresh data after submission
                 })
                 .catch((error) => {
@@ -216,4 +216,4 @@ const DonorDashboard = () => {
     );
 };
 
-export default DonorDashboard;
+export default DonorDashboard0;
