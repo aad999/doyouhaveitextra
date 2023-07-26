@@ -3,7 +3,7 @@ import axios from "axios";
 import sess from "../functions/sessionHandler";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-import backend from '../functions/backend.js';
+
 
 function AddDonation() {
     const navigate = useNavigate();
@@ -38,7 +38,7 @@ function AddDonation() {
             const currentDate = new Date();
 
             try {
-                const response = await axios.post(`${backend.getBackendUrl()}/addDonation`, {
+                const response = await axios.post(`${"https://do-you-have-it-extra-backend.onrender.com"}/addDonation`, {
                     heading: heading,
                     description: description,
                     tag: tag,

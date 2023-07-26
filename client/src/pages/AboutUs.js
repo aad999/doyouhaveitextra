@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar';
-import backend from '../functions/backend.js';
+
 
 const AboutUsPage = () => {
     return (

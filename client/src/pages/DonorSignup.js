@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import sess from "../functions/sessionHandler";
 import { useNavigate, Link } from "react-router-dom";
-import backend from '../functions/backend.js';
+
 
 
 const DonorSignup = (prop) => {
@@ -25,7 +25,7 @@ const DonorSignup = (prop) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post(`${backend.getBackendUrl()}/donor/signup`, {
+        await axios.post(`${"https://do-you-have-it-extra-backend.onrender.com"}/donor/signup`, {
             name: name,
             emailId: emailId,
             phoneNum: phoneNum,

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import sess from "../functions/sessionHandler";
 import { useNavigate, Link } from "react-router-dom";
-import backend from '../functions/backend.js';
+
 
 
 const JoinUs = () => {

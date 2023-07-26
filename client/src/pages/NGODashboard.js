@@ -3,7 +3,7 @@ import axios from "axios";
 import sess from "../functions/sessionHandler";
 import Navbar from "./Navbar";
 import { Link, useNavigate } from "react-router-dom";
-import backend from '../functions/backend.js';
+
 
 const NGODashboard = () => {
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ const NGODashboard = () => {
     const fetchDonationsData = async () => {
         try {
             const response = await axios.get(
-                `${backend.getBackendUrl()}/api/ngo/received/search?id=${sess.getNGO()}`
+                `${"https://do-you-have-it-extra-backend.onrender.com"}/api/ngo/received/search?id=${sess.getNGO()}`
             );
             const populatedData = await populateDonorData(response.data);
             setDonationsData(populatedData);
@@ -42,7 +42,7 @@ const NGODashboard = () => {
     const fetchNgoData = async () => {
         try {
             const response = await axios.get(
-                `${backend.getBackendUrl()}/api/ngo/search?id=${sess.getNGO()}`
+                `${"https://do-you-have-it-extra-backend.onrender.com"}/api/ngo/search?id=${sess.getNGO()}`
             );
             setNgoData(response.data);
         } catch (error) {
@@ -56,7 +56,7 @@ const NGODashboard = () => {
         for (const donation of donations) {
             try {
                 const response = await axios.get(
-                    `${backend.getBackendUrl()}/api/donor/search?id=${donation.donor}`
+                    `${"https://do-you-have-it-extra-backend.onrender.com"}/api/donor/search?id=${donation.donor}`
                 );
                 const donorData = response.data;
                 donation.donor = donorData;
@@ -80,7 +80,7 @@ const NGODashboard = () => {
     };
 
     return (
-        <div className="p-4 h-full min-h-screen">
+        <div className="p-3 h-full min-h-screen">
             <Navbar />
             <div className="bg-[hsla(0,0%,100%,0.55)] shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-[30px] p-9 rounded-sm mb-3 flex flex-col">
                 <h3 className="text-2xl md:text-4xl font-bold truncate">

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import sess from '../functions/sessionHandler';
-import backend from '../functions/backend.js';
+
 
 
 function NGODetails(props) {
@@ -20,7 +20,7 @@ function NGODetails(props) {
         const fetchNGOData = async () => {
             try {
                 const response = await axios.get(
-                    `${backend.getBackendUrl()}/api/ngo/search?id=${ngoId}`
+                    `${"https://do-you-have-it-extra-backend.onrender.com"}/api/ngo/search?id=${ngoId}`
                 );
                 setNGO(response.data);
             } catch (err) {

@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import sess from "../functions/sessionHandler";
 import Navbar from "./Navbar";
-import backend from '../functions/backend.js';
+
 
 function HomePage() {
 
     return (
-        <div className="pt-3">
+        <div className="p-3">
             <Navbar />
             <div className="h-screen">
                 <div className="px-6 py-12 text-center md:px-12 lg:text-left">

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import sess from '../functions/sessionHandler';
-import backend from '../functions/backend.js';
+
 
 
 function DonorDetails(props) {
@@ -21,7 +21,7 @@ function DonorDetails(props) {
         const fetchDonorData = async () => {
             try {
                 const response = await axios.get(
-                    `${backend.getBackendUrl()}/api/donor/search?id=${donorId}`
+                    `${"https://do-you-have-it-extra-backend.onrender.com"}/api/donor/search?id=${donorId}`
                 );
                 setDonor(response.data);
             } catch (err) {

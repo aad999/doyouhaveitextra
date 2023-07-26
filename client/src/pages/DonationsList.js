@@ -3,7 +3,7 @@ import axios from "axios";
 import sess from "../functions/sessionHandler";
 import { useNavigate, Link } from "react-router-dom";
 import Navbar from "./Navbar";
-import backend from '../functions/backend.js';
+
 
 const DonationsList = () => {
     const navigate = useNavigate();
@@ -29,7 +29,7 @@ const DonationsList = () => {
         try {
             const encodedQuery = encodeURIComponent(searchQuery);
             const response = await axios.get(
-                `${backend.getBackendUrl()}/api/donations/search?query=${encodedQuery}`
+                `${"https://do-you-have-it-extra-backend.onrender.com"}/api/donations/search?query=${encodedQuery}`
             );
             setSearchResults(response.data);
         } catch (err) {
@@ -49,7 +49,7 @@ const DonationsList = () => {
     const fetchNgoData = async () => {
         try {
             const response = await axios.get(
-                `${backend.getBackendUrl()}/api/ngo/search?id=${sess.getNGO()}`
+                `${"https://do-you-have-it-extra-backend.onrender.com"}/api/ngo/search?id=${sess.getNGO()}`
             );
             setNgoData(response.data);
         } catch (err) {
@@ -71,7 +71,7 @@ const DonationsList = () => {
     };
 
     const handleButtonClick = (donationId) => {
-        const endpoint = `${backend.getBackendUrl()}/request/submit`;
+        const endpoint = `${"https://do-you-have-it-extra-backend.onrender.com"}/request/submit`;
         const data = {
             ngoId: sess.getNGO(),
             donationId: donationId,
@@ -106,7 +106,7 @@ const DonationsList = () => {
     };
 
     return (
-        <div className="p-4 h-full min-h-screen">
+        <div className="p-3 h-full min-h-screen">
             <Navbar />
             <div className="bg-[hsla(0,0%,100%,0.55)] shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-[30px] p-9 rounded-sm mb-3 flex flex-col">
                 <h3 className="text-2xl md:text-4xl font-bold truncate">
