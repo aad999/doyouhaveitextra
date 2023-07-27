@@ -72,30 +72,34 @@ const AdminDashboard = () => {
 
     return (
         <div className="h-screen p-3">
-            <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
+            <div className="bg-[hsla(0,0%,100%,0.55)] shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-[30px] p-6 rounded-sm mb-3">
+                <h1 className="text-3xl font-bold">Admin Dashboard</h1>
+            </div>
             {isLoading ? (
                 <div>
                     <Loading />
                 </div>
             ) : (
                 <div>
-                    <h2 className="text-xl font-bold mb-4">NGOs</h2>
+                    <div className="bg-[hsla(0,0%,100%,0.55)] shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-[30px] p-6 rounded-sm mb-3">
+                        <h2 className="text-xl font-bold">NGOs</h2>
+                    </div>
                     {ngos.map(ngo => (
-                        <div key={ngo._id} className="border border-gray-300 rounded p-4 mb-4">
-                            <h3 className="text-lg font-semibold mb-2">{ngo.name}</h3>
-                            <p className="text-sm mb-2">Email: {ngo.emailId}</p>
-                            <p className="text-sm mb-2">Phone Number: {ngo.phoneNum}</p>
-                            <p className="text-sm mb-2">Verification Document: <a href={ngo.verificationDoc} target="_blank" rel="noopener noreferrer">{ngo.verificationDoc}</a></p>
+                        <div key={ngo._id} className="bg-[hsla(0,0%,100%,0.55)] shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-[30px] p-9 rounded-sm mb-3 flex flex-col">
+                            <h3 className="text-lg font-semibold mb-3">{ngo.name}</h3>
+                            <p className="text-md mb-3">Email: <a href={`mailto:${ngo.emailId}`} className="underline">{ngo.emailId}</a></p>
+                            <p className="text-md mb-3">Phone Number: <a href={`tel:${ngo.phoneNum}`} className="underline">{ngo.phoneNum}</a></p>
+                            <p className="text-md mb-4">Verification Document: <a href={ngo.verificationDoc} target="_blank" rel="noopener noreferrer" class="font-bold underline text-blue-700">{ngo.verificationDoc}</a></p>
                             {ngo.verified ? (
                                 <button
-                                    className="bg-red-500 text-white px-3 py-1 rounded"
+                                    className="bg-red-500 text-white px-3 py-1 rounded-full w-fit"
                                     onClick={() => handleCancelVerification(ngo._id)}
                                 >
                                     Cancel Verification
                                 </button>
                             ) : (
                                 <button
-                                    className="bg-green-500 text-white px-3 py-1 rounded"
+                                    className="bg-green-500 text-white px-3 py-1 rounded-full w-fit"
                                     onClick={() => handleVerifyNgo(ngo._id)}
                                 >
                                     Verify
@@ -104,6 +108,7 @@ const AdminDashboard = () => {
                         </div>
                     ))}
                 </div>
+
             )}
         </div>
     );
