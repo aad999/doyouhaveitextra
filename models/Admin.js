@@ -5,14 +5,6 @@ const adminSchema = new mongoose.Schema({
         type: String,
         required: [true]
     },
-    emailId: {
-        type: String,
-        required: [true]
-    },
-    phoneNum: {
-        type: Number,
-        required: [true]
-    },
     password: {
         type: String,
         required: [true]

@@ -15,6 +15,8 @@ import NGODetails from './pages/NGODetails';
 import DonorDetails from './pages/DonorDetails';
 import NGODashboard from './pages/NGODashboard';
 import AboutUs from './pages/AboutUs';
+import AdminSignup from './pages/AdminSignup';
+import AdminLogin from './pages/AdminLogin';
 
 const App = () => {
   return (
@@ -26,6 +28,8 @@ const App = () => {
         <Route path="/donor/login" element={<DonorLogin />} />
         <Route path="/ngo/signup" element={<NGOSignup />} />
         <Route path="/ngo/login" element={<NGOLogin />} />
+        <Route path="/admin/signup" element={<AdminSignup />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/addDonation" element={<AddDonation />} />
         <Route path="/donationsList" element={<DonationsList />} />
         <Route path="/donor/dashboard" element={<DonorDashboard0 />} />

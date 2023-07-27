@@ -15,6 +15,7 @@ const PORT = 8080 || process.env.PORT;
 
 const { addDonor, loginDonor } = require('./controller/donorControl');
 const { addNGO, loginNGO } = require('./controller/ngoControl');
+const { addAdmin, loginAdmin } = require('./controller/adminControl');
 const { addDonation } = require('./controller/donationControl');
 const { searchDonationsByQuery } = require('./controller/searchDonationsByQuery');
 const { searchDonorById } = require('./controller/searchDonorById');
@@ -35,6 +36,10 @@ app.post('/donor/login', loginDonor);
 app.post('/ngo/signup', addNGO);
 
 app.post('/ngo/login', loginNGO);
+
+app.post('/admin/signup', addAdmin);
+
+app.post('/admin/login', loginAdmin);
 
 app.post('/addDonation', addDonation);
 

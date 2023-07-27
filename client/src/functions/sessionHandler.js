@@ -14,6 +14,13 @@ const sess = {
         }
         return null;
     },
+
+    getAdmin : () => {
+        if (localStorage.getItem("admin")) {
+            const admin_id = JSON.parse(localStorage.getItem("admin"))._id;
+        }
+        return null;
+    },
     
     setDonor : (res) => {
         localStorage.clear();
@@ -29,6 +36,15 @@ const sess = {
         console.log(ngo);
         if (ngo) {
             localStorage.setItem("ngo", JSON.stringify({ ...ngo, password: '' }));
+        }
+    },
+
+    setAdmin : (res) => {
+        localStorage.clear();
+        const admin = res.data.admin._doc;
+        console.log(admin);
+        if (admin) {
+            localStorage.setItem("admin", JSON.stringify({ ...admin, password: '' }));
         }
     },
     

@@ -3,6 +3,7 @@ import axios from "axios";
 import sess from "../functions/sessionHandler";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import Loading from "./Loading";
 
 
 function AddDonation() {
@@ -12,7 +13,7 @@ function AddDonation() {
         if (sess.getNGO()) {
             navigate('/ngo/dashboard');
         }
-        if(!sess.getDonor()) {
+        if (!sess.getDonor()) {
             alert('Please Log In First');
             navigate('/home');
         }
@@ -21,6 +22,7 @@ function AddDonation() {
     const [heading, setHeading] = useState("");
     const [description, setDescription] = useState("");
     const [tag, setTag] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         const isConfirmed = window.confirm('Are you sure to add this donation?');
@@ -38,6 +40,7 @@ function AddDonation() {
             const currentDate = new Date();
 
             try {
+                setIsLoading(true);
                 const response = await axios.post(`${"https://do-you-have-it-extra-backend.onrender.com"}/addDonation`, {
                     heading: heading,
                     description: description,
@@ -59,7 +62,9 @@ function AddDonation() {
     return (
         <div className=" h-full min-h-screen p-3">
             <Navbar />
-            {sess.getDonor() && (
+            {isLoading ? (
+                <Loading />
+            ) : (
                 <div className="flex items-center justify-center mt-40">
                     <div className="block rounded-lg bg-white shadow-lg w-[36rem] p-10">
                         <header className="text-center">
@@ -118,9 +123,6 @@ function AddDonation() {
                         </form>
                     </div>
                 </div>
-            )}
-            {!sess.getDonor() && (
-                <div className="text-center text-xl font-bold mt-8">You are not logged in as a donor.</div>
             )}
         </div>
     );
