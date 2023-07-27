@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
 
 const AdminSignup = () => {
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -18,7 +20,7 @@ const AdminSignup = () => {
                     password: password,
                 }
             );
-            alert("Admin registered successfully!");
+            navigate('/admin/dashboard');
             setIsLoading(false);
         } catch (err) {
             setIsLoading(false);

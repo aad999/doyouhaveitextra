@@ -24,6 +24,7 @@ const { searchDonationById } = require('./controller/searchDonationById');
 const { submitRequest } = require('./controller/submitRequest');
 const { acceptRequest } = require('./controller/acceptRequest');
 const { searchDonationsRecievedByNGO } = require('./controller/searchDonationsRecievedByNGO');
+const { getAllNGOs } = require('./controller/getAllNGOs');
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
@@ -56,3 +57,5 @@ app.get('/api/ngo/search', searchNGOById);
 app.get('/api/donation/search', searchDonationById);
 
 app.get('/api/ngo/received/search', searchDonationsRecievedByNGO);
+
+app.get('/api/ngos/getall', getAllNGOs);

@@ -17,6 +17,7 @@ import NGODashboard from './pages/NGODashboard';
 import AboutUs from './pages/AboutUs';
 import AdminSignup from './pages/AdminSignup';
 import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/donor/dashboard0" element={<DonorDashboard0 />} />
         <Route path="/donor/dashboard1" element={<DonorDashboard1 />} />
         <Route path="/ngo/dashboard" element={<NGODashboard />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/joinUs" element={<JoinUs />} />
         <Route path="/logOut" element={<LogOut />} />
         <Route
