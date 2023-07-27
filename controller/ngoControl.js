@@ -98,6 +98,7 @@ exports.verifyNGO = async (req, res) => {
 
 exports.cancelVerification = async (req, res) => {
     const { id } = req.query;
+    console.log(id);
 
     try {
         // Find the NGO by ID
