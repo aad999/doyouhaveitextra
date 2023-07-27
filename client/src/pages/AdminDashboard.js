@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import sess from '../functions/sessionHandler';
 import { useNavigate } from 'react-router-dom';
+import Loading from './Loading';
 
 const AdminDashboard = () => {
     const navigate = useNavigate();
@@ -32,7 +33,7 @@ const AdminDashboard = () => {
     const handleVerifyNgo = async (ngoId) => {
         try {
             const response = await axios.post(
-                `${"https://do-you-have-it-extra-backend.onrender.com"}/api/ngo/verify/search?id=${ngoId}`
+                `${"https://do-you-have-it-extra-backend.onrender.com"}/ngo/verify/search?id=${ngoId}`
             );
             // Update the state to mark the NGO as verified
             setNgos(prevNgos =>
@@ -52,7 +53,7 @@ const AdminDashboard = () => {
     const handleCancelVerification = async (ngoId) => {
         try {
             const response = await axios.post(
-                `${"https://do-you-have-it-extra-backend.onrender.com"}/api/ngo/cancelverification/search?id=${ngoId}`
+                `${"https://do-you-have-it-extra-backend.onrender.com"}/ngo/cancelverification/search?id=${ngoId}`
             );
             // Update the state to mark the NGO as not verified
             setNgos(prevNgos =>
@@ -71,8 +72,39 @@ const AdminDashboard = () => {
 
     return (
         <div className="h-screen p-3">
-            {/* Rest of the code for the admin dashboard */}
-            {/* ... */}
+            <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
+            {isLoading ? (
+                <div>
+                    <Loading />
+                </div>
+            ) : (
+                <div>
+                    <h2 className="text-xl font-bold mb-4">NGOs</h2>
+                    {ngos.map(ngo => (
+                        <div key={ngo._id} className="border border-gray-300 rounded p-4 mb-4">
+                            <h3 className="text-lg font-semibold mb-2">{ngo.name}</h3>
+                            <p className="text-sm mb-2">Email: {ngo.emailId}</p>
+                            <p className="text-sm mb-2">Phone Number: {ngo.phoneNum}</p>
+                            <p className="text-sm mb-2">Verification Document: <a href={ngo.verificationDoc} target="_blank" rel="noopener noreferrer">{ngo.verificationDoc}</a></p>
+                            {ngo.verified ? (
+                                <button
+                                    className="bg-red-500 text-white px-3 py-1 rounded"
+                                    onClick={() => handleCancelVerification(ngo._id)}
+                                >
+                                    Cancel Verification
+                                </button>
+                            ) : (
+                                <button
+                                    className="bg-green-500 text-white px-3 py-1 rounded"
+                                    onClick={() => handleVerifyNgo(ngo._id)}
+                                >
+                                    Verify
+                                </button>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

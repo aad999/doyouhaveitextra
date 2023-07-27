@@ -14,7 +14,7 @@ connectDb();
 const PORT = 8080 || process.env.PORT;
 
 const { addDonor, loginDonor } = require('./controller/donorControl');
-const { addNGO, loginNGO } = require('./controller/ngoControl');
+const { addNGO, loginNGO, verifyNGO, cancelVerification } = require('./controller/ngoControl');
 const { addAdmin, loginAdmin } = require('./controller/adminControl');
 const { addDonation } = require('./controller/donationControl');
 const { searchDonationsByQuery } = require('./controller/searchDonationsByQuery');
@@ -59,3 +59,7 @@ app.get('/api/donation/search', searchDonationById);
 app.get('/api/ngo/received/search', searchDonationsRecievedByNGO);
 
 app.get('/api/ngos/getall', getAllNGOs);
+
+app.post('/ngo/verify/search', verifyNGO);
+
+app.post('/ngo/cancelverification/search', cancelVerification);

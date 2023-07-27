@@ -18,6 +18,7 @@ const sess = {
     getAdmin : () => {
         if (localStorage.getItem("admin")) {
             const admin_id = JSON.parse(localStorage.getItem("admin"))._id;
+            return admin_id;
         }
         return null;
     },
