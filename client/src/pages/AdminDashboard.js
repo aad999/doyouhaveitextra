@@ -53,7 +53,7 @@ const AdminDashboard = () => {
     const handleCancelVerification = async (ngoId) => {
         try {
             const response = await axios.post(
-                `${"https://do-you-have-it-extra-backend.onrender.com"}/ngo/cancelverification/search?id=${ngoId}`
+                `${"https://do-you-have-it-extra-backend.onrender.com"}/ngo/cancelVerification?id=${ngoId}`
             );
             // Update the state to mark the NGO as not verified
             setNgos(prevNgos =>

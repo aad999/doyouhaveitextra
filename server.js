@@ -60,6 +60,6 @@ app.get('/api/ngo/received/search', searchDonationsRecievedByNGO);
 
 app.get('/api/ngos/getall', getAllNGOs);
 
-app.post('/ngo/verify/search', verifyNGO);
+app.post('/ngo/verify', verifyNGO);
 
-app.post('/ngo/cancelverification/search', cancelVerification);
+app.post('/ngo/cancelverification', cancelVerification);
