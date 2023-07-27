@@ -33,7 +33,7 @@ const AdminDashboard = () => {
     const handleVerifyNgo = async (ngoId) => {
         try {
             const response = await axios.post(
-                `${"https://do-you-have-it-extra-backend.onrender.com"}/ngo/verify/search?id=${ngoId}`
+                `${"https://do-you-have-it-extra-backend.onrender.com"}/ngo/verify?id=${ngoId}`
             );
             // Update the state to mark the NGO as verified
             setNgos(prevNgos =>
