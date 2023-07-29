@@ -13,7 +13,6 @@ const NGODashboard = () => {
     const [ngoData, setNgoData] = useState({ verified: false });
     const [isLoading1, setIsLoading1] = useState(true);
     const [isLoading2, setIsLoading2] = useState(true);
-    const [isLoading3, setIsLoading3] = useState(true);
 
     useEffect(() => {
         if (sess.getDonor()) {
@@ -65,7 +64,6 @@ const NGODashboard = () => {
                 const response = await axios.get(
                     `${"https://do-you-have-it-extra-backend.onrender.com"}/api/donor/search?id=${donation.donor}`
                 );
-                setIsLoading3(false);
                 const donorData = response.data;
                 donation.donor = donorData;
                 populatedDonations.push(donation);
@@ -91,7 +89,7 @@ const NGODashboard = () => {
         <div className="p-3 h-full min-h-screen">
             <Navbar />
             {
-                (isLoading1 || isLoading2 || isLoading3) ? (
+                (isLoading1 || isLoading2) ? (
                     <Loading />
                 ) : (
                     ngoData.verified ? (
